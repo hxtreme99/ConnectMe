@@ -1,66 +1,47 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace ConnectMe
 {
-    static class DB
+    static class Db
     {
-        private static MySqlConnection connection = new MySqlConnection("server=localhost;port=3306;username=root;password=;database=connectme");
-        private static int lastId=0;
-        
-        public static void openConnection()
+        static readonly MySqlConnection _connection =
+            new MySqlConnection("server=localhost;port=3306;username=root;password=;database=connectme");
+
+        static int _lastId;
+
+        static void OpenConnection()
         {
-            if (connection.State == System.Data.ConnectionState.Closed)
+            if (_connection.State == ConnectionState.Closed) _connection.Open();
+        }
+
+        static void CloseConnection()
+        {
+            if (_connection.State == ConnectionState.Open) _connection.Close();
+        }
+
+        public static MySqlConnection GetConnection() => _connection;
+
+        public static int GetId() => _lastId;
+
+        public static DataTable ExecuteSql(string statement, object[] values)
+        {
+            OpenConnection();
+            var table = new DataTable();
+
+            var adapter = new MySqlDataAdapter();
+
+            var command = new MySqlCommand(statement, _connection);
+            if (values != null)
             {
-                connection.Open();
-            }
-        }
-
-        public static void closeConnection()
-        {
-            if (connection.State==System.Data.ConnectionState.Open)
-            {
-                connection.Close();
-            }
-        }
-
-        public static MySqlConnection GetConnection()
-        {
-            return connection;
-        }
-
-        public static int getId()
-        {
-            return lastId;
-        }
-        public static DataTable ExecuteSQL(String statement, Object[] values)
-        {
-            openConnection();
-            DataTable table = new DataTable();
-
-            MySqlDataAdapter adapter = new MySqlDataAdapter();
-
-            MySqlCommand command = new MySqlCommand(statement, connection);
-            if (values!=null)
-            {
-                String value;
-                for (int i = 0; i < values.Length; i++)
+                string value;
+                for (var i = 0; i < values.Length; i++)
                 {
                     value = "@" + i;
-                    if (values[i] is String)
-                    {
+                    if (values[i] is string)
                         command.Parameters.Add(value, MySqlDbType.VarChar).Value = values[i];
-                    }
                     else if (values[i] is int)
-                    {
                         command.Parameters.Add(value, MySqlDbType.Int32).Value = values[i];
-                    }
-                    
                 }
             }
 
@@ -68,9 +49,9 @@ namespace ConnectMe
 
             adapter.Fill(table);
 
-            lastId = (int)command.LastInsertedId;
+            _lastId = (int) command.LastInsertedId;
 
-            closeConnection();
+            CloseConnection();
             return table;
         }
     }

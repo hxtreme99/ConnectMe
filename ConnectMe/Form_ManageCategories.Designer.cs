@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_ManageCategories
+    partial class FormManageCategories
     {
         /// <summary>
         /// Required designer variable.

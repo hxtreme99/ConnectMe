@@ -1,86 +1,80 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConnectMe
 {
     public static class FormManager
     {
-        private static Form activeForm = null;
-        private static Panel panelChildForm= null;
-        private static Form previousForm = null;
-        
+        static Form _activeForm;
+        static Panel _panelChildForm;
+        static Form _previousForm;
+
         public static string ShowActivitiesOption { get; set; }
         public static string CreateEditOption { get; set; }
-        public static void setPanelChildForm(Panel panelChildForms)
+
+        public static void SetPanelChildForm(Panel panelChildForms)
         {
-            panelChildForm = panelChildForms;
+            _panelChildForm = panelChildForms;
         }
 
-        public static void goBack()
+        public static void GoBack()
         {
-            Form form = (Form)Activator.CreateInstance(previousForm.GetType());
-            openChildForm(form);
+            var form = (Form) Activator.CreateInstance(_previousForm.GetType());
+            OpenChildForm(form);
         }
 
-        
-        private static void openChildForm(Form childForm)
+        static void OpenChildForm(Form childForm)
         {
-            if (activeForm != null)
-            {
-                activeForm.Close();
-            }
-            previousForm = activeForm;
-            activeForm = childForm;
+            if (_activeForm != null) _activeForm.Close();
+            _previousForm = _activeForm;
+            _activeForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            panelChildForm.Controls.Add(childForm);
-            panelChildForm.Tag = childForm;
+            _panelChildForm.Controls.Add(childForm);
+            _panelChildForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-
         }
 
-        public static void openActivitiesCreatedForm()
+        public static void OpenActivitiesCreatedForm()
         {
             ShowActivitiesOption = "Created activities";
-            openChildForm(new Form_ShowActivities());
+            OpenChildForm(new FormShowActivities());
         }
 
-        public static void openActivitiesForm()
+        public static void OpenActivitiesForm()
         {
             ShowActivitiesOption = "All activities";
-            openChildForm(new Form_ShowActivities());
+            OpenChildForm(new FormShowActivities());
         }
 
-        public static void openActivitiesParticipatingForm()
+        public static void OpenActivitiesParticipatingForm()
         {
             ShowActivitiesOption = "Participating activities";
-            FormManager.openChildForm(new Form_ShowActivities());
+            OpenChildForm(new FormShowActivities());
         }
 
-        public static void openCreateActivityForm()
+        public static void OpenCreateActivityForm()
         {
             CreateEditOption = "Create activity";
-            openChildForm(new Form_CreateEditActivity());
+            OpenChildForm(new FormCreateEditActivity());
         }
 
-        public static void openEditActivityForm()
+        public static void OpenEditActivityForm()
         {
-            FormManager.CreateEditOption = "Edit activity";
-            FormManager.openChildForm(new Form_CreateEditActivity());
+            CreateEditOption = "Edit activity";
+            OpenChildForm(new FormCreateEditActivity());
         }
-        public static void openActivityProfileForm()
+
+        public static void OpenActivityProfileForm()
         {
-            openChildForm(new Form_ActivityProfile());
+            OpenChildForm(new FormActivityProfile());
         }
-        public static void openManageCategories()
+
+        public static void OpenManageCategories()
         {
-            openChildForm(new Form_ManageCategories());
+            OpenChildForm(new FormManageCategories());
         }
     }
 }

@@ -1,40 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ConnectMe
 {
     abstract class User
     {
-        private static List<User> users = new List<User>();
-        public int Id { get; set; }
-        public String Name { get; set; }
-        public String Email { get; set; }
-        public String Username { get; set; }
-        public String Password { get; set; }
-
-
-        //public static User searchUser(int id)
-        //{
-        //    foreach (var item in users)
-        //    {
-        //        if (item.id==id)
-        //        {
-        //            return item;
-        //        }
-        //    }
-        //    return null;
-        //}
-        public static List<User> getUsers()
-        {
-            return users;
-        }
-        public static void addUser(User user)
-        {
-            users.Add(user);
-        }
+        static readonly List<User> _users = new List<User>();
         //public int Id
         //{
         //    get { return id; }
@@ -58,12 +28,35 @@ namespace ConnectMe
         //}
         public User(int id, string name, string email, string username, string password)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Email = email;
-            this.Username = username;
-            this.Password = password;
+            Id = id;
+            Name = name;
+            Email = email;
+            Username = username;
+            Password = password;
         }
 
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+
+        //public static User searchUser(int id)
+        //{
+        //    foreach (var item in users)
+        //    {
+        //        if (item.id==id)
+        //        {
+        //            return item;
+        //        }
+        //    }
+        //    return null;
+        //}
+        public static List<User> GetUsers() => _users;
+
+        public static void AddUser(User user)
+        {
+            _users.Add(user);
+        }
     }
 }

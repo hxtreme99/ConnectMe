@@ -1,129 +1,100 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConnectMe
 {
     public partial class Form3 : Form
     {
-        
-        
         public Form3()
         {
             InitializeComponent();
-            customizeDesign();
-            FormManager.setPanelChildForm(panelChildForm);
+            CustomizeDesign();
+            FormManager.SetPanelChildForm(panelChildForm);
 
-            if (AccountsManager.getLoggedUser() is Client)
-            {
-                buttonManageCategories.Visible = false;
-            }
-            else if (AccountsManager.getLoggedUser() is Admin)
-            {
-                buttonAtividadesInscritas.Visible = false;
-            }
-            
-
+            if (AccountsManager.GetLoggedUser() is Client) buttonManageCategories.Visible = false;
+            else if (AccountsManager.GetLoggedUser() is Admin) buttonAtividadesInscritas.Visible = false;
         }
-        private void customizeDesign()
+
+        void CustomizeDesign()
         {
             panelSubMenu.Visible = false;
         }
 
-        private void hideSubMenu()
+        void HideSubMenu()
         {
-            if (panelSubMenu.Visible==true)
-            {
-                panelSubMenu.Visible = false;
-            }
+            if (panelSubMenu.Visible) panelSubMenu.Visible = false;
         }
 
-        private void showSubMenu()
+        void ShowSubMenu()
         {
             if (panelSubMenu.Visible == false)
             {
-                hideSubMenu();
+                HideSubMenu();
                 panelSubMenu.Visible = true;
             }
-            else
-            {
-                panelSubMenu.Visible = false;
-            }
+            else panelSubMenu.Visible = false;
         }
-        private void buttonVerAtividades_Click(object sender, EventArgs e)
+
+        void buttonVerAtividades_Click(object sender, EventArgs e)
         {
-            FormManager.openActivitiesForm();
+            FormManager.OpenActivitiesForm();
 
             //showSubMenu();
         }
 
-        private void buttonTodasAtividades_Click(object sender, EventArgs e)
+        void buttonTodasAtividades_Click(object sender, EventArgs e)
         {
-            
             //hideSubMenu();
         }
-        
-        private void buttonAtividadesCategoria_Click(object sender, EventArgs e)
+
+        void buttonAtividadesCategoria_Click(object sender, EventArgs e)
         {
             //Code
             //hideSubMenu();
         }
 
-        private void buttonAtividadesRegiao_Click(object sender, EventArgs e)
+        void buttonAtividadesRegiao_Click(object sender, EventArgs e)
         {
             //Code
             //hideSubMenu();
         }
 
-        private void buttonAtividadesInscritas_Click(object sender, EventArgs e)
+        void buttonAtividadesInscritas_Click(object sender, EventArgs e)
         {
-            FormManager.openActivitiesParticipatingForm();
+            FormManager.OpenActivitiesParticipatingForm();
             //FormManager.ShowActivitiesOption = "Participating activities";
             //FormManager.openChildForm(new ShowActivities_form());
             //hideSubMenu();
         }
 
-        private void buttonAtividadesCriadas_Click(object sender, EventArgs e)
+        void buttonAtividadesCriadas_Click(object sender, EventArgs e)
         {
-            FormManager.openActivitiesCreatedForm();
+            FormManager.OpenActivitiesCreatedForm();
             //hideSubMenu();
         }
 
-        private void buttonCriarAtividades_Click(object sender, EventArgs e)
+        void buttonCriarAtividades_Click(object sender, EventArgs e)
         {
-            FormManager.openCreateActivityForm();
+            FormManager.OpenCreateActivityForm();
             //Code
             //hideSubMenu();
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        void Form3_Load(object sender, EventArgs e) { }
+
+        void panelChildForm_Paint(object sender, PaintEventArgs e) { }
+
+        void buttonLogout_Click(object sender, EventArgs e)
         {
-          
+            AccountsManager.Logout();
+            Close();
+            var loginForm = new FormLogin();
+            loginForm.Show();
         }
 
-        private void panelChildForm_Paint(object sender, PaintEventArgs e)
+        void buttonManageCategories_Click(object sender, EventArgs e)
         {
-
-        }
-
-     
-        private void buttonLogout_Click(object sender, EventArgs e)
-        {
-            AccountsManager.logout();
-            this.Close();
-            Form_Login login_Form = new Form_Login();
-            login_Form.Show();
-        }
-
-        private void buttonManageCategories_Click(object sender, EventArgs e)
-        {
-            FormManager.openManageCategories();
+            FormManager.OpenManageCategories();
         }
     }
 }

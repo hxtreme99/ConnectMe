@@ -1,58 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConnectMe
+﻿namespace ConnectMe
 {
     static class AccountsManager
     {
-        private static User userLogged;
+        static User _userLogged;
 
-
-        public static Boolean login(string username, string password)
+        public static bool Login(string username, string password)
         {
-            String statement = "SELECT * FROM `user`,`role` WHERE `username` = @0 AND `password`= @1 AND user.id=role.User_id";
-            String[] values = { username, password };
-            DataTable table = DB.ExecuteSQL(statement, values);
+            var statement =
+                "SELECT * FROM `user`,`role` WHERE `username` = @0 AND `password`= @1 AND user.id=role.User_id";
+            string[] values =
+            {
+                username,
+                password
+            };
+            var table = Db.ExecuteSql(statement, values);
 
             if (table.Rows.Count > 0)
             {
-                DataRow[] datarow = table.Select();
-                var id_str=datarow[0]["id"].ToString();
+                var datarow = table.Select();
+                var idStr = datarow[0]["id"].ToString();
 
-                int.TryParse(id_str, out int id);
-                userLogged = createUser(id);
+                int.TryParse(idStr, out var id);
+                _userLogged = CreateUser(id);
                 return true;
             }
-            else
-            {
-                return false;
-            }
 
-
+            return false;
         }
 
-        public static void logout()
+        public static void Logout()
         {
-            userLogged = null;
+            _userLogged = null;
         }
 
-        public static User getLoggedUser()
-        {
-            return userLogged;
-        }
+        public static User GetLoggedUser() => _userLogged;
 
-        public static User createUser(int id)
+        public static User CreateUser(int id)
         {
-            String statement = "SELECT * FROM `user`,`role` WHERE id=User_id AND id=@0";
-            Object[] values = { id};
-            DataTable table = DB.ExecuteSQL(statement, values);
-            DataRow[] datarow = table.Select();
+            var statement = "SELECT * FROM `user`,`role` WHERE id=User_id AND id=@0";
+            object[] values = {id};
+            var table = Db.ExecuteSql(statement, values);
+            var datarow = table.Select();
 
-            foreach (DataRow row in datarow)
+            foreach (var row in datarow)
             {
                 var name = row["name"].ToString();
                 var email = row["e-mail"].ToString();
@@ -65,13 +55,11 @@ namespace ConnectMe
                     User client = new Client(id, name, email, username, password);
                     return client;
                 }
-                else
-                {
-                    User admin = new Admin(id, name, email, username, password);
-                    return admin;
-                }
-                
+
+                User admin = new Admin(id, name, email, username, password);
+                return admin;
             }
+
             return null;
         }
     }

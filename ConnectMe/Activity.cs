@@ -1,14 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConnectMe
 {
     class Activity
     {
-        private static List<User> users = new List<User>();
+        static readonly List<User> _users = new List<User>();
+
+        public Activity(int id,
+            string name,
+            User user,
+            Category category,
+            string location,
+            DateTime date,
+            string description,
+            int maxPeople)
+        {
+            Id = id;
+            Name = name;
+            User = user;
+            Category = category;
+            Location = location;
+            Date = date;
+            Description = description;
+            MaxPeople = maxPeople;
+        }
         //private int id;
         //private String name;
         //private User user;
@@ -19,35 +35,19 @@ namespace ConnectMe
         //private int maxPeople;
 
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public User User { get; set; }
         public Category Category { get; set; }
-        public String Location { get; set; }
+        public string Location { get; set; }
         public DateTime Date { get; set; }
-        public String Description { get; set; }
+        public string Description { get; set; }
         public int MaxPeople { get; set; }
 
-        public Activity(int id, string name, User user, Category category,string location, DateTime date, string description, int maxPeople)
+        public static List<User> GetUsers() => _users;
+
+        public static void AddUser(User user)
         {
-            
-            this.Id = id;
-            this.Name = name;
-            this.User = user;
-            this.Category = category;
-            this.Location = location;
-            this.Date = date;
-            this.Description = description;
-            this.MaxPeople = maxPeople;
+            _users.Add(user);
         }
-        public static List<User> getUsers()
-        {
-            return users;
-        }
-        public static void addUser(User user)
-        {
-            users.Add(user);
-        }
-        
-     
     }
 }

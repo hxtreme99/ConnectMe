@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_Login
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.

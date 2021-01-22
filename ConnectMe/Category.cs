@@ -1,34 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ConnectMe
 {
     class Category
     {
-        private static List<Category> categories = new List<Category>();
+        static readonly List<Category> _categories = new List<Category>();
+
+        public Category(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
 
         public int Id { get; set; }
         public string Name { get; set; }
-        
 
-        public Category(int id,String name)
+        public static void AddCategory(Category category)
         {
-            this.Id = id;
-            this.Name = name;
+            _categories.Add(category);
         }
 
-        public static void addCategory(Category category)
-        {
-            categories.Add(category);
-        }
-
-        public static List<Category> GetCategories()
-        {
-            return categories;
-        }
-        
+        public static List<Category> GetCategories() => _categories;
     }
 }
