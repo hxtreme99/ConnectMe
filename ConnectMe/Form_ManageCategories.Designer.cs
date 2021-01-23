@@ -70,6 +70,7 @@
             // 
             // comboBoxCategories
             // 
+            this.comboBoxCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategories.FormattingEnabled = true;
             this.comboBoxCategories.Location = new System.Drawing.Point(109, 298);
             this.comboBoxCategories.Name = "comboBoxCategories";
@@ -91,7 +92,7 @@
             this.buttonDeleteCategory.Text = "Eliminar";
             this.buttonDeleteCategory.UseVisualStyleBackColor = false;
             // 
-            // Form_CreateCategory
+            // FormManageCategories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -102,7 +103,7 @@
             this.Controls.Add(this.buttonCreateCategory);
             this.Controls.Add(this.textBoxCategoryName);
             this.Controls.Add(this.labelTitle);
-            this.Name = "Form_CreateCategory";
+            this.Name = "FormManageCategories";
             this.Text = "Form_CreateCategory";
             this.ResumeLayout(false);
             this.PerformLayout();
