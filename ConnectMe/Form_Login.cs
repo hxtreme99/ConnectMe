@@ -47,7 +47,7 @@ namespace ConnectMe
 
         void txtUsername_TextChanged(object sender, EventArgs e) { }
 
-        void txtpassword_TextChanged(object sender, EventArgs e) { }
+        void txtPassword_TextChanged(object sender, EventArgs e) { }
 
         void panel2_Paint(object sender, PaintEventArgs e) { }
 

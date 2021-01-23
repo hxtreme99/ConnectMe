@@ -21,7 +21,7 @@ namespace ConnectMe
             {
                 PreSelectFields();
                 labelTitle.Text = "Editar Atividade";
-                buttonCreate.Text = "Confirmar";
+                buttonCreate.Text = "Actualizar";
             }
         }
 

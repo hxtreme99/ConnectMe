@@ -12,14 +12,13 @@ namespace ConnectMe
             FillComboBox();
         }
 
-        void FillTable(string statement, string[] values)
+        void FillTable(string statement, object[] values)
         {
             var table = Db.ExecuteSql(statement, values);
             dataGridView1.DataSource = table;
             dataGridView1.Columns["id"].Visible = false;
 
-            //Formatação da tabela
-
+            // Formatação da tabela
             for (var i = 1; i < dataGridView1.Columns.Count; i++)
                 dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].AutoSizeMode =
@@ -92,11 +91,14 @@ namespace ConnectMe
 
         void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id;
-            id = (int) dataGridView1.CurrentRow.Cells["id"].Value;
-            var activity = ActivityManager.CreateActivityId(id);
+            if (dataGridView1.CurrentRow != null)
+            {
+                var id = (int) dataGridView1.CurrentRow.Cells["id"].Value;
+                var activity = ActivityManager.CreateActivityId(id);
 
-            ActivityManager.SetCurrentActivity(activity);
+                ActivityManager.SetCurrentActivity(activity);
+            }
+
             FormManager.OpenActivityProfileForm();
         }
 

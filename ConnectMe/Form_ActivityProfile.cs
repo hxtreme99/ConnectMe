@@ -61,8 +61,10 @@ namespace ConnectMe
                 if (user.Id == (int) row["id"]) participate = true;
             }
 
-            if (participate) buttonParticipate.Text = "Não Participar";
-            else buttonParticipate.Text = "Participar";
+            buttonParticipate.Text = participate ? "Não Participar" : "Participar";
+            // same as:
+            //  if (participate) buttonParticipate.Text = "Não Participar";
+            //  else buttonParticipate.Text = "Participar";
         }
 
         void activity_name_Click(object sender, EventArgs e) { }
@@ -73,7 +75,7 @@ namespace ConnectMe
             {
                 if (ActivityManager.NumberOfParticipants < ActivityManager.GetCurrentActivity().MaxPeople)
                 {
-                    var statement =
+                    const string statement =
                         "INSERT INTO `user_has_activity` (`User_id`, `Activity_id`) VALUES (@0, @1)";
                     object[] values =
                     {
@@ -87,7 +89,7 @@ namespace ConnectMe
             }
             else //Remove participation
             {
-                var statement =
+                const string statement =
                     "DELETE FROM `user_has_activity` WHERE `user_has_activity`.`User_id` = @0 AND `user_has_activity`.`Activity_id` = @1";
                 object[] values =
                 {

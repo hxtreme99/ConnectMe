@@ -6,9 +6,9 @@
 
         public static bool Login(string username, string password)
         {
-            var statement =
+            const string statement =
                 "SELECT * FROM `user`,`role` WHERE `username` = @0 AND `password`= @1 AND user.id=role.User_id";
-            string[] values =
+            object[] values =
             {
                 username,
                 password
@@ -37,7 +37,7 @@
 
         public static User CreateUser(int id)
         {
-            var statement = "SELECT * FROM `user`,`role` WHERE id=User_id AND id=@0";
+            const string statement = "SELECT * FROM `user`,`role` WHERE id=User_id AND id=@0";
             object[] values = {id};
             var table = Db.ExecuteSql(statement, values);
             var datarow = table.Select();
