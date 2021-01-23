@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_Login
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -151,7 +151,7 @@
             this.txtpassword.PasswordChar = '*';
             this.txtpassword.Size = new System.Drawing.Size(205, 21);
             this.txtpassword.TabIndex = 7;
-            this.txtpassword.TextChanged += new System.EventHandler(this.txtpassword_TextChanged);
+            this.txtpassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // label1
             // 

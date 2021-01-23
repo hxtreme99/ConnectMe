@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_Register
+    partial class FormRegister
     {
         /// <summary>
         /// Required designer variable.

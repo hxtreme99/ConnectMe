@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_ActivityProfile
+    partial class FormActivityProfile
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_ActivityProfile));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormActivityProfile));
             this.activity_name = new System.Windows.Forms.Label();
             this.buttonParticipate = new System.Windows.Forms.Button();
             this.description = new System.Windows.Forms.Label();

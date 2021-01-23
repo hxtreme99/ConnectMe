@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_CreateEditActivity
+    partial class FormCreateEditActivity
     {
         /// <summary>
         /// Required designer variable.

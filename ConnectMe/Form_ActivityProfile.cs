@@ -1,162 +1,135 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ConnectMe
 {
-    public partial class Form_ActivityProfile : Form
+    public partial class FormActivityProfile : Form
     {
-        public Form_ActivityProfile()
+        public FormActivityProfile()
         {
-            
             InitializeComponent();
-            
         }
-       
-        private void ActivityProfile_form_Load(object sender, EventArgs e)
+
+        void ActivityProfile_form_Load(object sender, EventArgs e)
         {
-            
-            int activity_id = ActivityManager.getCurrentActivity().Id;
-            Activity activity = ActivityManager.createActivityId(activity_id);
+            var activityId = ActivityManager.GetCurrentActivity().Id;
+            var activity = ActivityManager.CreateActivityId(activityId);
 
-            fillUsersTable(ActivityManager.getCurrentActivity(), AccountsManager.getLoggedUser());
-
+            FillUsersTable(ActivityManager.GetCurrentActivity(), AccountsManager.GetLoggedUser());
 
             activity_name.Text = activity.Name;
             category.Text = activity.Category.Name;
-            date.Text=activity.Date.ToString("dd/MM/yyyy HH:mm");
-            
+            date.Text = activity.Date.ToString("dd/MM/yyyy HH:mm");
+
             description.Text = activity.Description;
             localization.Text = activity.Location;
-            labelActivityCreator.Text = "Criador da atividade\n"+activity.User.Email;
+            labelActivityCreator.Text = "Criador da atividade\n" + activity.User.Email;
 
-            
             description.MaximumSize = new Size(400, 0);
             description.AutoSize = true;
-            
-            
 
-            if (AccountsManager.getLoggedUser() is Admin)
-            {
-                buttonParticipate.Visible = false;
-            }
+            if (AccountsManager.GetLoggedUser() is Admin) buttonParticipate.Visible = false;
 
-            else if (activity.User.Id != AccountsManager.getLoggedUser().Id)
+            else if (activity.User.Id != AccountsManager.GetLoggedUser().Id)
             {
                 buttonDelete.Visible = false;
                 buttonEdit.Visible = false;
             }
-
-
-            
         }
 
-        private void fillUsersTable(Activity activity,User user)
+        void FillUsersTable(Activity activity, User user)
         {
-            
-            string statement = "SELECT user.id,user.name as Participantes FROM `user_has_activity`,`user`,`activity` WHERE user_has_activity.User_id=user.id AND activity.id = user_has_activity.Activity_id AND activity.id = @0";
-            Object[] values = { activity.Id};
-            DataTable table = DB.ExecuteSQL(statement, values);
+            var statement =
+                "SELECT user.id,user.name as Participantes FROM `user_has_activity`,`user`,`activity` WHERE user_has_activity.User_id=user.id AND activity.id = user_has_activity.Activity_id AND activity.id = @0";
+            object[] values = {activity.Id};
+            var table = Db.ExecuteSql(statement, values);
 
             dataGridView1.DataSource = table;
             dataGridView1.Columns["id"].Visible = false;
             dataGridView1.Columns["Participantes"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            ActivityManager.NumberOfParticipants=table.Rows.Count;
-            
+            ActivityManager.NumberOfParticipants = table.Rows.Count;
 
-            nr_people.Text = ActivityManager.NumberOfParticipants + "/" + activity.MaxPeople.ToString();
+            nr_people.Text = ActivityManager.NumberOfParticipants + "/" + activity.MaxPeople;
 
-            DataRow[] datarow = table.Select();
+            var datarow = table.Select();
 
             //If user logged participate on current activity
-            bool participate=false;
-            foreach (DataRow row in datarow)
+            var participate = false;
+            foreach (var row in datarow)
             {
-                if (user.Id==(int)row["id"])
-                {
-                    participate = true;
-                }
+                if (user.Id == (int) row["id"]) participate = true;
             }
-            if (participate)
-            {
-                buttonParticipate.Text = "Não Participar";
-            }
-            else
-            {
-                buttonParticipate.Text = "Participar";
-            }
-            
+
+            buttonParticipate.Text = participate ? "Não Participar" : "Participar";
+            // same as:
+            //  if (participate) buttonParticipate.Text = "Não Participar";
+            //  else buttonParticipate.Text = "Participar";
         }
 
-        private void activity_name_Click(object sender, EventArgs e)
-        {
+        void activity_name_Click(object sender, EventArgs e) { }
 
-        }
-
-        private void buttonParticipate_Click(object sender, EventArgs e)
+        void buttonParticipate_Click(object sender, EventArgs e)
         {
-            if (buttonParticipate.Text.Equals("Participar"))    //Participate on activity
+            if (buttonParticipate.Text.Equals("Participar")) //Participate on activity
             {
-                if (ActivityManager.NumberOfParticipants<ActivityManager.getCurrentActivity().MaxPeople)
+                if (ActivityManager.NumberOfParticipants < ActivityManager.GetCurrentActivity().MaxPeople)
                 {
-                    string statement = "INSERT INTO `user_has_activity` (`User_id`, `Activity_id`) VALUES (@0, @1)";
-                    Object[] values = { AccountsManager.getLoggedUser().Id, ActivityManager.getCurrentActivity().Id };
-                    DB.ExecuteSQL(statement, values);
-                    fillUsersTable(ActivityManager.getCurrentActivity(), AccountsManager.getLoggedUser());
+                    const string statement =
+                        "INSERT INTO `user_has_activity` (`User_id`, `Activity_id`) VALUES (@0, @1)";
+                    object[] values =
+                    {
+                        AccountsManager.GetLoggedUser().Id,
+                        ActivityManager.GetCurrentActivity().Id
+                    };
+                    Db.ExecuteSql(statement, values);
+                    FillUsersTable(ActivityManager.GetCurrentActivity(), AccountsManager.GetLoggedUser());
                 }
-                else
-                {
-                    MessageBox.Show("A atividade está cheia!");
-                }
+                else MessageBox.Show("A atividade está cheia!");
             }
-            else    //Remove participation
+            else //Remove participation
             {
-                string statement = "DELETE FROM `user_has_activity` WHERE `user_has_activity`.`User_id` = @0 AND `user_has_activity`.`Activity_id` = @1";
-                Object[] values = { AccountsManager.getLoggedUser().Id, ActivityManager.getCurrentActivity().Id };
-                DB.ExecuteSQL(statement, values);
-                fillUsersTable(ActivityManager.getCurrentActivity(), AccountsManager.getLoggedUser());
-
+                const string statement =
+                    "DELETE FROM `user_has_activity` WHERE `user_has_activity`.`User_id` = @0 AND `user_has_activity`.`Activity_id` = @1";
+                object[] values =
+                {
+                    AccountsManager.GetLoggedUser().Id,
+                    ActivityManager.GetCurrentActivity().Id
+                };
+                Db.ExecuteSql(statement, values);
+                FillUsersTable(ActivityManager.GetCurrentActivity(), AccountsManager.GetLoggedUser());
             }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        void buttonDelete_Click(object sender, EventArgs e)
         {
-            
-
-            var confirmResult =  MessageBox.Show("Tem a certeza que quer eliminar esta atividade?",
-                                     "Atividade removida!",
-                                     MessageBoxButtons.YesNo);
+            var confirmResult = MessageBox.Show("Tem a certeza que quer eliminar esta atividade?",
+                "Atividade removida!",
+                MessageBoxButtons.YesNo);
 
             if (confirmResult == DialogResult.Yes)
             {
-                Object[] values = { ActivityManager.getCurrentActivity().Id };
+                object[] values = {ActivityManager.GetCurrentActivity().Id};
 
-                string statement = "DELETE FROM `user_has_activity` WHERE `user_has_activity`.`Activity_id` = @0";
-                DB.ExecuteSQL(statement, values);
+                var statement =
+                    "DELETE FROM `user_has_activity` WHERE `user_has_activity`.`Activity_id` = @0";
+                Db.ExecuteSql(statement, values);
 
                 statement = "DELETE FROM `activity` WHERE `activity`.`id` = @0";
-                DB.ExecuteSQL(statement, values);
+                Db.ExecuteSql(statement, values);
 
-                FormManager.goBack();
+                FormManager.GoBack();
             }
-            
-
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        void pictureBox1_Click(object sender, EventArgs e)
         {
-            FormManager.goBack();
+            FormManager.GoBack();
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
+        void buttonEdit_Click(object sender, EventArgs e)
         {
-            FormManager.openEditActivityForm();
+            FormManager.OpenEditActivityForm();
         }
     }
 }

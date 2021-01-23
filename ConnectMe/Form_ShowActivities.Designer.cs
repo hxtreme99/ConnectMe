@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form_ShowActivities
+    partial class FormShowActivities
     {
         /// <summary>
         /// Required designer variable.
