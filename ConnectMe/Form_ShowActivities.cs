@@ -9,7 +9,8 @@ namespace ConnectMe
         {
             InitializeComponent();
 
-            FillComboBox();
+            comboBox1.Items.Add("Todas as categorias");
+            FormManager.FillComboBox(this.comboBox1);
         }
 
         void FillTable(string statement, object[] values)
@@ -25,15 +26,7 @@ namespace ConnectMe
                 DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        void FillComboBox()
-        {
-            CategoryManager.UpdateCategories();
-            comboBox1.Items.Add("Todas as categorias");
-
-            var categoriesNames = CategoryManager.GetAllCategoriesNames();
-            foreach (var categoryName in categoriesNames) comboBox1.Items.Add(categoryName);
-            comboBox1.SelectedIndex = 0;
-        }
+        
 
         void ShowActivities_Load(object sender, EventArgs e) { }
 

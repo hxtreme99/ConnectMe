@@ -52,7 +52,7 @@
 
                 int.TryParse(id, out var resultid);
                 var category = new Category(resultid, name);
-                Category.AddCategory(category);
+                //Category.AddCategory(category);
             }
         }
 

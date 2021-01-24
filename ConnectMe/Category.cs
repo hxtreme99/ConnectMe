@@ -4,7 +4,7 @@ namespace ConnectMe
 {
     class Category
     {
-        static readonly List<Category> _categories = new List<Category>();
+       
 
         public Category(int id, string name)
         {
@@ -15,11 +15,9 @@ namespace ConnectMe
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public static void AddCategory(Category category)
+        public override string ToString()
         {
-            _categories.Add(category);
+            return Name;
         }
-
-        public static List<Category> GetCategories() => _categories;
     }
 }

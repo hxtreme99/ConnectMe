@@ -24,23 +24,6 @@ namespace ConnectMe
             }
         }
 
-        public static int GetCategoryId(string name)
-        {
-            foreach (var category in Categories)
-            {
-                if (name.Equals(category.Name)) return category.Id;
-            }
-
-            return 0;
-        }
-
-        public static List<string> GetAllCategoriesNames()
-        {
-            var categoriesNamesList = new List<string>();
-            foreach (var category in Categories) categoriesNamesList.Add(category.Name);
-            return categoriesNamesList;
-        }
-
         public static Category getCategory_by_id(int id)
         {
             var statement = "SELECT * FROM `category` WHERE id=@0";
@@ -53,5 +36,7 @@ namespace ConnectMe
 
             return category;
         }
+
+        public static List<Category> GetCategories() => Categories;
     }
 }

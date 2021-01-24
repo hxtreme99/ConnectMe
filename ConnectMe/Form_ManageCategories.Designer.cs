@@ -43,8 +43,9 @@
             this.labelTitle.Name = "labelTitle";
             this.labelTitle.Size = new System.Drawing.Size(714, 506);
             this.labelTitle.TabIndex = 1;
-            this.labelTitle.Text = "Criar Categoria";
+            this.labelTitle.Text = "Gerir Categorias";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelTitle.Click += new System.EventHandler(this.labelTitle_Click);
             // 
             // textBoxCategoryName
             // 
@@ -67,6 +68,7 @@
             this.buttonCreateCategory.TabIndex = 6;
             this.buttonCreateCategory.Text = "Criar";
             this.buttonCreateCategory.UseVisualStyleBackColor = false;
+            this.buttonCreateCategory.Click += new System.EventHandler(this.buttonCreateCategory_Click);
             // 
             // comboBoxCategories
             // 
@@ -91,6 +93,7 @@
             this.buttonDeleteCategory.TabIndex = 9;
             this.buttonDeleteCategory.Text = "Eliminar";
             this.buttonDeleteCategory.UseVisualStyleBackColor = false;
+            this.buttonDeleteCategory.Click += new System.EventHandler(this.buttonDeleteCategory_Click);
             // 
             // FormManageCategories
             // 

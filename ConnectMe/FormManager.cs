@@ -37,6 +37,15 @@ namespace ConnectMe
             childForm.Show();
         }
 
+        public  static void FillComboBox(ComboBox comboBox)
+        {
+            CategoryManager.UpdateCategories();
+
+            var categories = CategoryManager.GetCategories();
+            foreach (var category in categories) comboBox.Items.Add(category);
+
+            comboBox.SelectedIndex = 0;
+        }
         public static void OpenActivitiesCreatedForm()
         {
             ShowActivitiesOption = "Created activities";

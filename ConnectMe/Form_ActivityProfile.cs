@@ -118,6 +118,7 @@ namespace ConnectMe
                 statement = "DELETE FROM `activity` WHERE `activity`.`id` = @0";
                 Db.ExecuteSql(statement, values);
 
+                MessageBox.Show("Atividade eliminada");
                 FormManager.GoBack();
             }
         }
