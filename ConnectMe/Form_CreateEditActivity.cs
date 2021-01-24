@@ -68,7 +68,12 @@ namespace ConnectMe
                 return;
             }
 
-
+            if (!int.TryParse(maxPeople,out int MaxPeopleResult))
+            {
+                MessageBox.Show("Insira um número máximo de pessoas válido");
+                return;
+                
+            }
             //---------------------------------------------------
 
             Category categorySelected = (Category) comboBoxCategory.SelectedItem;

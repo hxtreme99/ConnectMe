@@ -32,30 +32,40 @@ namespace ConnectMe
             };
             var table = Db.ExecuteSql(statement, values);
 
-            if (table.Rows.Count > 0) MessageBox.Show("Username ja existe!");
-            else
+            if (table.Rows.Count > 0)
             {
-                statement =
-                    "INSERT INTO `user` (`id`, `name`, `e-mail`, `username`, `password`) VALUES (@0, @1 , @2 , @3, @4)";
-                string[] values2 =
-                {
-                    "NULL",
-                    name,
-                    email,
-                    username,
-                    password
-                };
-
-                Db.ExecuteSql(statement, values2);
-                var id = Db.GetId();
-                //MessageBox.Show(id.ToString());
-                statement = "INSERT INTO `role` (`User_id`, `type`) VALUES (@0, 'client')";
-                object[] values3 = {id};
-                Db.ExecuteSql(statement, values3);
-                MessageBox.Show("Utilizador criado com sucesso!");
-                new FormLogin().Show();
-                Hide();
+                MessageBox.Show("Username ja existe!");
+                return;
             }
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) ||
+                string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) )
+            {
+                MessageBox.Show("Todos os campos têm que estar preenchidos!");
+                return;
+            }
+
+            statement =
+                "INSERT INTO `user` (`id`, `name`, `e-mail`, `username`, `password`) VALUES (@0, @1 , @2 , @3, @4)";
+            string[] values2 =
+            {
+                "NULL",
+                name,
+                email,
+                username,
+                password
+            };
+
+            Db.ExecuteSql(statement, values2);
+            var id = Db.GetId();
+            //MessageBox.Show(id.ToString());
+            statement = "INSERT INTO `role` (`User_id`, `type`) VALUES (@0, 'client')";
+            object[] values3 = {id};
+            Db.ExecuteSql(statement, values3);
+            MessageBox.Show("Utilizador criado com sucesso!");
+            new FormLogin().Show();
+            Hide();
+            
         }
 
         void textBox1_TextChanged(object sender, EventArgs e) { }
