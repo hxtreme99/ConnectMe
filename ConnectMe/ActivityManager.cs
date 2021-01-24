@@ -44,7 +44,6 @@ namespace ConnectMe
                 var myDate = DateTime.ParseExact(date, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
                 var activity = new Activity(id, name, user, category, location, myDate, description,
                     intMaxPeople);
-                //Activity.addActivity(activity);
                 return activity;
             }
 

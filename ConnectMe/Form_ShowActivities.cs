@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace ConnectMe
@@ -16,7 +19,7 @@ namespace ConnectMe
         void FillTable(string statement, object[] values)
         {
             var table = Db.ExecuteSql(statement, values);
-            
+            table = removePassedActivities(table);
             dataGridView1.DataSource = table;
             dataGridView1.Columns["id"].Visible = false;
 
@@ -94,6 +97,25 @@ namespace ConnectMe
             }
 
             FormManager.OpenActivityProfileForm();
+        }
+
+        DataTable removePassedActivities(DataTable table)
+        {
+            var datarow = table.Select();
+
+            foreach (var row in datarow)
+            {
+                var date = row["Data"].ToString();
+                var myDate = DateTime.ParseExact(date, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+
+                if (myDate<DateTime.Now)
+                {
+                    row.Delete();
+                }
+            }
+
+            return table;
+            
         }
 
         void panel2_Paint(object sender, PaintEventArgs e) { }
