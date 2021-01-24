@@ -113,9 +113,7 @@ namespace ConnectMe
                     row.Delete();
                 }
             }
-
             return table;
-            
         }
 
         void panel2_Paint(object sender, PaintEventArgs e) { }
