@@ -16,6 +16,7 @@ namespace ConnectMe
         void FillTable(string statement, object[] values)
         {
             var table = Db.ExecuteSql(statement, values);
+            
             dataGridView1.DataSource = table;
             dataGridView1.Columns["id"].Visible = false;
 

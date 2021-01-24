@@ -17,7 +17,7 @@ namespace ConnectMe
                 labelTitle.Text = "Criar Atividade";
                 buttonCreate.Text = "Criar";
             }
-            else
+            else  //Edit activity
             {
                 PreSelectFields();
                 labelTitle.Text = "Editar Atividade";
@@ -46,35 +46,11 @@ namespace ConnectMe
             var maxPeople = this.maxPeople.Text;
             var descriptions = description.Text;
 
-            //-------------------Verifications--------------------
-            if (comboBoxCategory.SelectedIndex == -1)
+            bool verify = Verifications();
+            if (!verify)
             {
-                MessageBox.Show("Selecione uma categoria");
                 return;
             }
-
-            var categoryName = comboBoxCategory.SelectedItem.ToString();
-            if (string.IsNullOrEmpty(categoryName) || string.IsNullOrEmpty(activityName) ||
-                string.IsNullOrEmpty(local) || string.IsNullOrEmpty(dateTime) ||
-                string.IsNullOrEmpty(maxPeople) || string.IsNullOrEmpty(descriptions))
-            {
-                MessageBox.Show("Todos os campos têm que estar preenchidos!");
-                return;
-            }
-
-            if (dateTimePicker1.Value < DateTime.Now)
-            {
-                MessageBox.Show("Insira uma data válida!");
-                return;
-            }
-
-            if (!int.TryParse(maxPeople,out int MaxPeopleResult))
-            {
-                MessageBox.Show("Insira um número máximo de pessoas válido");
-                return;
-                
-            }
-            //---------------------------------------------------
 
             Category categorySelected = (Category) comboBoxCategory.SelectedItem;
 
@@ -114,6 +90,40 @@ namespace ConnectMe
                 MessageBox.Show("Atividade editada");
                 FormManager.OpenActivitiesCreatedForm();
             }
+        }
+
+        bool Verifications()
+        {
+            
+            if (comboBoxCategory.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione uma categoria");
+                return false;
+            }
+
+            var categoryName = comboBoxCategory.SelectedItem.ToString();
+            if (string.IsNullOrEmpty(categoryName) || string.IsNullOrEmpty(nameActivity.Text) ||
+                string.IsNullOrEmpty(localization.Text) || string.IsNullOrEmpty(maxPeople.Text) ||
+                string.IsNullOrEmpty(description.Text) )
+            {
+                MessageBox.Show("Todos os campos têm que estar preenchidos!");
+                return false;
+            }
+
+            if (dateTimePicker1.Value < DateTime.Now)
+            {
+                MessageBox.Show("Insira uma data válida!");
+                return false;
+            }
+
+            if (!int.TryParse(maxPeople.Text, out int MaxPeopleResult))
+            {
+                MessageBox.Show("Insira um número máximo de pessoas válido");
+                return false;
+
+            }
+
+            return true;
         }
 
         void PreSelectFields()
