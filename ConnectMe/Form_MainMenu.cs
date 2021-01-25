@@ -99,7 +99,7 @@ namespace ConnectMe
 
         private void buttonActivitiesHistory_Click(object sender, EventArgs e)
         {
-            
+            FormManager.OpenActivitiesHistoryForm();
         }
     }
 }

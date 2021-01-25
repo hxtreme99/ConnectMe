@@ -59,7 +59,6 @@ namespace ConnectMe
                     break;
 
                 case "Participating activities":
-
                     TitleActivities.Text = "Atividades Inscritas";
                     statement =
                         "SELECT activity.id,category.name AS Categoria,activity.name AS Atividade,localization AS Localização,date AS Data FROM `activity`,`category`,`user_has_activity` WHERE category.id=activity.Category_id AND user_has_activity.User_id=@0 AND user_has_activity.Activity_id=activity.id";
@@ -118,7 +117,7 @@ namespace ConnectMe
         DataTable[] SeparateActivities(DataTable table)
         {
             var datarow = table.Select();
-            var historyTable = new DataTable();
+            var historyTable = CreateDataTable();
 
             foreach (var row in datarow)
             {
@@ -127,13 +126,27 @@ namespace ConnectMe
 
                 if (myDate<DateTime.Now)
                 {
+                    historyTable.Rows.Add(row.ItemArray);
                     row.Delete();
-                    historyTable.Rows.Add(row);
+                    
                 }
             }
 
             DataTable[] tables = new[] { table,historyTable};
             return tables;
+        }
+
+        DataTable CreateDataTable()
+        {
+            var dt = new DataTable();
+            dt.Clear(); 
+            dt.Columns.Add("id",typeof(int));
+            dt.Columns.Add("Categoria");
+            dt.Columns.Add("Atividade");
+            dt.Columns.Add("Localização");
+            dt.Columns.Add("Data");
+
+            return dt;
         }
 
         void panel2_Paint(object sender, PaintEventArgs e) { }
