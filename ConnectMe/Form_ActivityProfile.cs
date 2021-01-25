@@ -36,6 +36,13 @@ namespace ConnectMe
                 buttonDelete.Visible = false;
                 buttonEdit.Visible = false;
             }
+
+            if (ActivityManager.GetCurrentActivity().Date < DateTime.Now)
+            {
+                buttonParticipate.Visible = false;
+                buttonDelete.Visible = false;
+                buttonEdit.Visible = false;
+            }
         }
 
         void FillUsersTable(Activity activity, User user)

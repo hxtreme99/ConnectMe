@@ -19,8 +19,18 @@ namespace ConnectMe
         void FillTable(string statement, object[] values)
         {
             var table = Db.ExecuteSql(statement, values);
-            table = removePassedActivities(table);
-            dataGridView1.DataSource = table;
+
+            DataTable[] tables = SeparateActivities(table); 
+                        
+            if (FormManager.ShowActivitiesOption.Equals("History activities"))
+            {
+                dataGridView1.DataSource = tables[1];   //tables[1] passed activities
+            }
+            else
+            {
+                dataGridView1.DataSource = tables[0];   //tables[0] future activities
+            }
+            
             dataGridView1.Columns["id"].Visible = false;
 
             // Formatação da tabela
@@ -49,12 +59,18 @@ namespace ConnectMe
                     break;
 
                 case "Participating activities":
+
                     TitleActivities.Text = "Atividades Inscritas";
                     statement =
                         "SELECT activity.id,category.name AS Categoria,activity.name AS Atividade,localization AS Localização,date AS Data FROM `activity`,`category`,`user_has_activity` WHERE category.id=activity.Category_id AND user_has_activity.User_id=@0 AND user_has_activity.Activity_id=activity.id";
                     values = new[] {AccountsManager.GetLoggedUser().Id.ToString()};
                     break;
-
+                case "History activities":
+                    TitleActivities.Text = "Histórico de Atividades";
+                    statement =
+                        "SELECT activity.id,category.name AS Categoria,activity.name AS Atividade,localization AS Localização,date AS Data FROM `activity`,`category`,`user_has_activity` WHERE category.id=activity.Category_id AND user_has_activity.User_id=@0 AND user_has_activity.Activity_id=activity.id";
+                    values = new[] { AccountsManager.GetLoggedUser().Id.ToString() };
+                    break;
                 case "Created activities":
                     TitleActivities.Text = "Atividades Criadas";
                     statement =
@@ -99,9 +115,10 @@ namespace ConnectMe
             FormManager.OpenActivityProfileForm();
         }
 
-        DataTable removePassedActivities(DataTable table)
+        DataTable[] SeparateActivities(DataTable table)
         {
             var datarow = table.Select();
+            var historyTable = new DataTable();
 
             foreach (var row in datarow)
             {
@@ -111,9 +128,12 @@ namespace ConnectMe
                 if (myDate<DateTime.Now)
                 {
                     row.Delete();
+                    historyTable.Rows.Add(row);
                 }
             }
-            return table;
+
+            DataTable[] tables = new[] { table,historyTable};
+            return tables;
         }
 
         void panel2_Paint(object sender, PaintEventArgs e) { }

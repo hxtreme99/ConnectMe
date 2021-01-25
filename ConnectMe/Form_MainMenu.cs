@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace ConnectMe
 {
-    public partial class Form3 : Form
+    public partial class Form_MainMenu : Form
     {
-        public Form3()
+        public Form_MainMenu()
         {
             InitializeComponent();
             CustomizeDesign();
@@ -95,6 +95,11 @@ namespace ConnectMe
         void buttonManageCategories_Click(object sender, EventArgs e)
         {
             FormManager.OpenManageCategories();
+        }
+
+        private void buttonActivitiesHistory_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

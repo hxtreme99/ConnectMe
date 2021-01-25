@@ -23,7 +23,7 @@ namespace ConnectMe
             if (loginSuccessful)
             {
                 MessageBox.Show("Bem Vindo " + AccountsManager.GetLoggedUser().Name + "!");
-                new Form3().Show();
+                new Form_MainMenu().Show();
                 Hide();
             }
             else

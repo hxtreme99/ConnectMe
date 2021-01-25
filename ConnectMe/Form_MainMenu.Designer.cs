@@ -1,6 +1,6 @@
 ﻿namespace ConnectMe
 {
-    partial class Form3
+    partial class Form_MainMenu
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelChildForm = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.buttonActivitiesHistory = new System.Windows.Forms.Button();
             this.panelSideMenu.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -55,6 +56,7 @@
             // 
             this.panelSideMenu.AutoScroll = true;
             this.panelSideMenu.BackColor = System.Drawing.Color.Black;
+            this.panelSideMenu.Controls.Add(this.buttonActivitiesHistory);
             this.panelSideMenu.Controls.Add(this.buttonManageCategories);
             this.panelSideMenu.Controls.Add(this.buttonLogout);
             this.panelSideMenu.Controls.Add(this.buttonCriarAtividades);
@@ -268,7 +270,23 @@
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
             // 
-            // Form3
+            // buttonActivitiesHistory
+            // 
+            this.buttonActivitiesHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonActivitiesHistory.FlatAppearance.BorderSize = 0;
+            this.buttonActivitiesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonActivitiesHistory.ForeColor = System.Drawing.Color.Gainsboro;
+            this.buttonActivitiesHistory.Location = new System.Drawing.Point(0, 445);
+            this.buttonActivitiesHistory.Name = "buttonActivitiesHistory";
+            this.buttonActivitiesHistory.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.buttonActivitiesHistory.Size = new System.Drawing.Size(250, 45);
+            this.buttonActivitiesHistory.TabIndex = 8;
+            this.buttonActivitiesHistory.Text = "Histórico de Atividades";
+            this.buttonActivitiesHistory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonActivitiesHistory.UseVisualStyleBackColor = true;
+            this.buttonActivitiesHistory.Click += new System.EventHandler(this.buttonActivitiesHistory_Click);
+            // 
+            // Form_MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -279,7 +297,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1000, 600);
-            this.Name = "Form3";
+            this.Name = "Form_MainMenu";
             this.Text = "Connect Me";
             this.Load += new System.EventHandler(this.Form3_Load);
             this.panelSideMenu.ResumeLayout(false);
@@ -309,5 +327,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Button buttonManageCategories;
+        private System.Windows.Forms.Button buttonActivitiesHistory;
     }
 }

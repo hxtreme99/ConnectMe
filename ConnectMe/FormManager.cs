@@ -64,6 +64,11 @@ namespace ConnectMe
             OpenChildForm(new FormShowActivities());
         }
 
+        public static void OpenActivitiesHistoryForm()
+        {
+            ShowActivitiesOption = "History Activities";
+            OpenChildForm(new FormShowActivities());
+        }
         public static void OpenCreateActivityForm()
         {
             CreateEditOption = "Create activity";
