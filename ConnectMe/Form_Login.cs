@@ -12,27 +12,7 @@ namespace ConnectMe
 
         void Form1_Load(object sender, EventArgs e) { }
 
-        //Login button
-        void button1_Click(object sender, EventArgs e)
-        {
-            var username = txtUsername.Text;
-            var password = txtpassword.Text;
-
-            var loginSuccessful = AccountsManager.Login(username, password);
-
-            if (loginSuccessful)
-            {
-                MessageBox.Show("Bem Vindo " + AccountsManager.GetLoggedUser().Name + "!");
-                new Form_MainMenu().Show();
-                Hide();
-            }
-            else
-            {
-                MessageBox.Show("O utilizador ou a password inseridos estão incorretos");
-                txtUsername.Clear();
-                txtpassword.Clear();
-            }
-        }
+        
 
         void label1_Click(object sender, EventArgs e)
         {
@@ -45,10 +25,6 @@ namespace ConnectMe
             Application.Exit();
         }
 
-        void txtUsername_TextChanged(object sender, EventArgs e) { }
-
-        void txtPassword_TextChanged(object sender, EventArgs e) { }
-
         void panel2_Paint(object sender, PaintEventArgs e) { }
 
         void panel1_Paint(object sender, PaintEventArgs e) { }
@@ -58,5 +34,29 @@ namespace ConnectMe
         void pictureBox2_Click(object sender, EventArgs e) { }
 
         void pictureBox1_Click(object sender, EventArgs e) { }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Login button
+
+            var username = textUsername.Text;
+            var password = textPassword.Text;
+
+            var loginSuccessful = AccountsManager.Login(username, password);
+
+            if (loginSuccessful)
+            {
+                MessageBox.Show("Bem Vindo " + AccountsManager.GetLoggedUser().Name + "!");
+                new Form_MainMenu().Show();
+                Hide();
+            }
+            else
+            {
+                MessageBox.Show("O utilizador ou a password inseridos estão incorretos");
+                textUsername.Clear();
+                textPassword.Clear();
+            }
+            
+        }
     }
 }

@@ -33,11 +33,11 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtpassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textUsername = new System.Windows.Forms.TextBox();
+            this.textPassword = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -99,22 +99,6 @@
             this.panel2.TabIndex = 4;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(214)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(35, 320);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(236, 39);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Iniciar sessão";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -127,31 +111,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Sair";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.txtUsername.Location = new System.Drawing.Point(65, 185);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(205, 21);
-            this.txtUsername.TabIndex = 7;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
-            // 
-            // txtpassword
-            // 
-            this.txtpassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtpassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
-            this.txtpassword.Location = new System.Drawing.Point(65, 246);
-            this.txtpassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtpassword.Name = "txtpassword";
-            this.txtpassword.PasswordChar = '*';
-            this.txtpassword.Size = new System.Drawing.Size(205, 21);
-            this.txtpassword.TabIndex = 7;
-            this.txtpassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // label1
             // 
@@ -166,17 +125,56 @@
             this.label1.Text = "Registar-se";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Form1
+            // textUsername
+            // 
+            this.textUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.textUsername.Location = new System.Drawing.Point(66, 185);
+            this.textUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textUsername.Name = "textUsername";
+            this.textUsername.Size = new System.Drawing.Size(205, 21);
+            this.textUsername.TabIndex = 9;
+            // 
+            // textPassword
+            // 
+            this.textPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.textPassword.Location = new System.Drawing.Point(66, 246);
+            this.textPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textPassword.Name = "textPassword";
+            this.textPassword.PasswordChar = '*';
+            this.textPassword.Size = new System.Drawing.Size(205, 21);
+            this.textPassword.TabIndex = 10;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(114)))), ((int)(((byte)(214)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(35, 320);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(236, 39);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Iniciar sessão";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(308, 486);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtpassword);
-            this.Controls.Add(this.txtUsername);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.textPassword);
+            this.Controls.Add(this.textUsername);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox3);
@@ -184,7 +182,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
+            this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -203,11 +201,11 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtpassword;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textUsername;
+        private System.Windows.Forms.TextBox textPassword;
+        private System.Windows.Forms.Button button1;
     }
 }
 
