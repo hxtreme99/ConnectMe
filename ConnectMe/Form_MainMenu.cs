@@ -12,7 +12,11 @@ namespace ConnectMe
             FormManager.SetPanelChildForm(panelChildForm);
 
             if (AccountsManager.GetLoggedUser() is Client) buttonManageCategories.Visible = false;
-            else if (AccountsManager.GetLoggedUser() is Admin) buttonAtividadesInscritas.Visible = false;
+            else if (AccountsManager.GetLoggedUser() is Admin)
+            {
+                buttonPariticipatingActivities.Visible = false;
+                buttonActivitiesHistory.Visible = false;
+            }
         }
 
         void CustomizeDesign()
@@ -35,49 +39,37 @@ namespace ConnectMe
             else panelSubMenu.Visible = false;
         }
 
-        void buttonVerAtividades_Click(object sender, EventArgs e)
+        void buttonActivitiesShowSubMenu_Click(object sender, EventArgs e)
+        {
+            
+
+            ShowSubMenu();
+        }
+
+        void buttonAllActivities_Click(object sender, EventArgs e)
         {
             FormManager.OpenActivitiesForm();
-
-            //showSubMenu();
+            HideSubMenu();
         }
 
-        void buttonTodasAtividades_Click(object sender, EventArgs e)
-        {
-            //hideSubMenu();
-        }
-
-        void buttonAtividadesCategoria_Click(object sender, EventArgs e)
-        {
-            //Code
-            //hideSubMenu();
-        }
-
-        void buttonAtividadesRegiao_Click(object sender, EventArgs e)
-        {
-            //Code
-            //hideSubMenu();
-        }
-
-        void buttonAtividadesInscritas_Click(object sender, EventArgs e)
+        void buttonPariticipatingActivities_Click(object sender, EventArgs e)
         {
             FormManager.OpenActivitiesParticipatingForm();
-            //FormManager.ShowActivitiesOption = "Participating activities";
-            //FormManager.openChildForm(new ShowActivities_form());
-            //hideSubMenu();
+            HideSubMenu();
         }
 
-        void buttonAtividadesCriadas_Click(object sender, EventArgs e)
+        void buttonCreatedActivities_Click(object sender, EventArgs e)
         {
             FormManager.OpenActivitiesCreatedForm();
-            //hideSubMenu();
+            HideSubMenu();
         }
 
-        void buttonCriarAtividades_Click(object sender, EventArgs e)
+
+
+        void buttonCreateActivities_Click(object sender, EventArgs e)
         {
             FormManager.OpenCreateActivityForm();
-            //Code
-            //hideSubMenu();
+            HideSubMenu();
         }
 
         void Form3_Load(object sender, EventArgs e) { }
@@ -95,11 +87,13 @@ namespace ConnectMe
         void buttonManageCategories_Click(object sender, EventArgs e)
         {
             FormManager.OpenManageCategories();
+            HideSubMenu();
         }
 
         private void buttonActivitiesHistory_Click(object sender, EventArgs e)
         {
             FormManager.OpenActivitiesHistoryForm();
+            HideSubMenu();
         }
     }
 }
