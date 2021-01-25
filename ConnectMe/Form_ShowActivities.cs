@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 
@@ -11,7 +12,8 @@ namespace ConnectMe
         public FormShowActivities()
         {
             InitializeComponent();
-
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 12,FontStyle.Bold);
+            dataGridView1.DefaultCellStyle.Font = new Font("Segoe UI", 10);
             comboBox1.Items.Add("Todas as categorias");
             FormManager.FillComboBox(this.comboBox1);
         }
