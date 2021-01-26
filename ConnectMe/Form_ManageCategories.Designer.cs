@@ -61,10 +61,10 @@
             this.buttonCreateCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCreateCategory.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCreateCategory.ForeColor = System.Drawing.Color.White;
-            this.buttonCreateCategory.Location = new System.Drawing.Point(422, 195);
+            this.buttonCreateCategory.Location = new System.Drawing.Point(422, 200);
             this.buttonCreateCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCreateCategory.Name = "buttonCreateCategory";
-            this.buttonCreateCategory.Size = new System.Drawing.Size(179, 39);
+            this.buttonCreateCategory.Size = new System.Drawing.Size(167, 35);
             this.buttonCreateCategory.TabIndex = 6;
             this.buttonCreateCategory.Text = "Criar";
             this.buttonCreateCategory.UseVisualStyleBackColor = false;
@@ -74,7 +74,7 @@
             // 
             this.comboBoxCategories.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCategories.FormattingEnabled = true;
-            this.comboBoxCategories.Location = new System.Drawing.Point(109, 298);
+            this.comboBoxCategories.Location = new System.Drawing.Point(109, 306);
             this.comboBoxCategories.Name = "comboBoxCategories";
             this.comboBoxCategories.Size = new System.Drawing.Size(269, 24);
             this.comboBoxCategories.TabIndex = 8;
@@ -86,10 +86,10 @@
             this.buttonDeleteCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDeleteCategory.Font = new System.Drawing.Font("Bahnschrift", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonDeleteCategory.ForeColor = System.Drawing.Color.White;
-            this.buttonDeleteCategory.Location = new System.Drawing.Point(422, 286);
+            this.buttonDeleteCategory.Location = new System.Drawing.Point(422, 300);
             this.buttonDeleteCategory.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonDeleteCategory.Name = "buttonDeleteCategory";
-            this.buttonDeleteCategory.Size = new System.Drawing.Size(179, 39);
+            this.buttonDeleteCategory.Size = new System.Drawing.Size(167, 35);
             this.buttonDeleteCategory.TabIndex = 9;
             this.buttonDeleteCategory.Text = "Eliminar";
             this.buttonDeleteCategory.UseVisualStyleBackColor = false;

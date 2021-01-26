@@ -58,7 +58,7 @@ namespace ConnectMe
 
             Db.ExecuteSql(statement, values2);
             var id = Db.GetId();
-            //MessageBox.Show(id.ToString());
+            
             statement = "INSERT INTO `role` (`User_id`, `type`) VALUES (@0, 'client')";
             object[] values3 = {id};
             Db.ExecuteSql(statement, values3);
