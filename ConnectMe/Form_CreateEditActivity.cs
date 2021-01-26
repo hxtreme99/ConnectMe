@@ -42,7 +42,7 @@ namespace ConnectMe
         {
             var activityName = nameActivity.Text;
             var local = localization.Text;
-            var dateTime = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            var dateTime = dateTimePicker1.Value.ToString("yyyy-MM-dd HH:mm:[00]");
             var maxPeople = this.maxPeople.Text;
             var descriptions = description.Text;
 
