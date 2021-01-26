@@ -105,7 +105,6 @@
     <Compile Include="Category.cs" />
     <Compile Include="CategoryManager.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Controller.cs" />
     <Compile Include="Form_ManageCategories.cs">
       <SubType>Form</SubType>
     </Compile>
