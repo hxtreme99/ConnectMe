@@ -25,7 +25,7 @@ namespace ConnectMe
 
         static void OpenChildForm(Form childForm)
         {
-            if (_activeForm != null) _activeForm.Close();
+            _activeForm?.Close();
             _previousForm = _activeForm;
             _activeForm = childForm;
             childForm.TopLevel = false;
@@ -37,7 +37,7 @@ namespace ConnectMe
             childForm.Show();
         }
 
-        public  static void FillComboBox(ComboBox comboBox)
+        public static void FillComboBox(ComboBox comboBox)
         {
             CategoryManager.UpdateCategories();
 
@@ -46,6 +46,7 @@ namespace ConnectMe
 
             comboBox.SelectedIndex = 0;
         }
+
         public static void OpenActivitiesCreatedForm()
         {
             ShowActivitiesOption = "Created activities";
@@ -69,6 +70,7 @@ namespace ConnectMe
             ShowActivitiesOption = "History activities";
             OpenChildForm(new FormShowActivities());
         }
+
         public static void OpenCreateActivityForm()
         {
             CreateEditOption = "Create activity";

@@ -1,4 +1,4 @@
-﻿using System.CodeDom;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -23,11 +23,10 @@ namespace ConnectMe
             {
                 MessageBox.Show("Verifique a conexão à internet");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Verifique a conexão à internet");
             }
-
         }
 
         static void CloseConnection()
@@ -39,22 +38,20 @@ namespace ConnectMe
             catch (SqlException)
             {
                 MessageBox.Show("Verifique a conexão à internet");
-
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Verifique a conexão à internet");
             }
-
         }
 
         public static MySqlConnection GetConnection() => _connection;
 
         public static int GetId() => _lastId;
 
-        public static DataTable ExecuteSql(string statement, object[] values) 
+        public static DataTable ExecuteSql(string statement, object[] values)
         {
-            OpenConnection() ;
+            OpenConnection();
             var table = new DataTable();
 
             var adapter = new MySqlDataAdapter();
@@ -83,11 +80,10 @@ namespace ConnectMe
             {
                 MessageBox.Show("Verifique a conexão à internet");
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Verifique a conexão à internet");
             }
-
 
             _lastId = (int) command.LastInsertedId;
 

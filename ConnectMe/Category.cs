@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace ConnectMe
+﻿namespace ConnectMe
 {
     class Category
     {
-       
-
         public Category(int id, string name)
         {
             Id = id;
@@ -15,9 +11,6 @@ namespace ConnectMe
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public override string ToString()
-        {
-            return Name;
-        }
+        public override string ToString() => Name;
     }
 }

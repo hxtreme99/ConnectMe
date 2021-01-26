@@ -74,16 +74,12 @@
                 var categoryOfActivity = row["Categoria_id"].ToString();
 
                 int.TryParse(userCreatedActivity, out var intUserId);
-                //User user = User.searchUser(intUserID);
 
                 int.TryParse(categoryOfActivity, out var intCategoryId);
-                //Category category = Category.searchCategory(intCategoryID);
 
                 int.TryParse(maxPeople, out var intMaxPeople);
 
                 int.TryParse(id, out var intActivityId);
-                //Activity activity = new Event(intActivityId, name,user,category,location,date,description,rules,intMaxPeople);
-                //Activity.addActivity(activity);
             }
         }
     }
