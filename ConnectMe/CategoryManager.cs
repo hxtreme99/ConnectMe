@@ -4,11 +4,11 @@ namespace ConnectMe
 {
     static class CategoryManager
     {
-        public static List<Category> Categories = new List<Category>();
+        static readonly List<Category> _categories = new List<Category>();
 
         public static void UpdateCategories()
         {
-            Categories.Clear();
+            _categories.Clear();
             var statement = "SELECT * FROM `category`";
             var table = Db.ExecuteSql(statement, null);
             var datarow = table.Select();
@@ -20,7 +20,7 @@ namespace ConnectMe
 
                 int.TryParse(id, out var resultid);
                 var category = new Category(resultid, name);
-                Categories.Add(category);
+                _categories.Add(category);
             }
         }
 
@@ -37,6 +37,6 @@ namespace ConnectMe
             return category;
         }
 
-        public static List<Category> GetCategories() => Categories;
+        public static IEnumerable<Category> GetCategories() => _categories;
     }
 }
